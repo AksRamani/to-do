@@ -17,7 +17,6 @@ export default function Home() {
     if (!input) {
       alert("enter something");
     } else if (input && !isEditing) {
-      console.log(!isEditing);
       setItems(
         items.map((elem) => {
           if (elem.id === eid) {
@@ -40,25 +39,13 @@ export default function Home() {
   };
   const handleEdit = (id) => {
     const edit = items.find((element) => id === element.id);
-    console.log(edit);
     setInput(edit.value);
     setEid(id);
     setIsEditing(false);
   };
 
   const hadleDelet = (id) => {
-    // items.splice(id, 1);
-    // setItems([...items]);
-
-    const dlt = items.filter((elem) => {
-      return id !== elem.id;
-    });
-    console.log(dlt);
-    setItems(
-      items.filter((elem) => {
-        return id !== elem.id;
-      })
-    );
+    setItems(items.filter((elem) => id !== elem.id));
   };
 
   const handleClearAll = () => {
@@ -88,10 +75,9 @@ export default function Home() {
             <ul className="my-3">
               {items !== null &&
                 items.map((item, index) => (
-                  <li className="list" id={item.id} key={index}>
+                  <li className="list my-2" id={item.id} key={index}>
                     {item.value}
-                    <br>  
-                    </br>
+                    <br></br>
 
                     <button
                       className="bn31 mx-2 "
@@ -112,14 +98,17 @@ export default function Home() {
             </ul>
           </div>
         </div>
-        <button disabled={items.length < 1}
-          className="custom-btn"
-          onClick={() => {
-            handleClearAll();
-          }}
-        >
-          Clear ALL
-        </button>
+        <center>
+          <button
+            disabled={items.length < 1}
+            className="custom-btn"
+            onClick={() => {
+              handleClearAll();
+            }}
+          >
+            Clear ALL
+          </button>
+        </center>
       </div>
     </>
   );

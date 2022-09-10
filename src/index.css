@@ -60,6 +60,7 @@ code {
   letter-spacing: 4px;
   overflow: hidden;
   margin-right: 50px;
+
  
 }
 .custom-btn:hover{
@@ -198,4 +199,9 @@ code {
   100% {
     transform: translate3d(0, 0, 0) translateZ(0);
   }
+}
+
+.list
+{
+  font-family: 'Combo', cursive;
 }

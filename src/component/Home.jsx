@@ -51,10 +51,28 @@ export default function Home() {
   const handleClearAll = () => {
     setItems([]);
   };
+  // let Time = new Date().getHours();
+  let Time = 21
+  let msg = (Time <12 ? "Good Morning" : Time < 19 && Time > 12 ? "Good Afternoon" : Time > 19 && Time < 22 ? "Good Evening" :"Good Night" )
+
+//   if(Time < 12)
+// {
+//   msg ="good morning"
+// }else if(Time < 19 && Time > 12)
+// {
+//   msg ="Good Afternoon"
+// }else if(Time > 19 && Time < 22)
+// {
+//   msg ="Good evening"
+// }else
+// {
+//   msg ="Good Night"
+// }
 
   return (
     <>
       <div className="container my-5">
+       <p style={{color : "white" , fontSize:"20px"}}> Hello , <span style={{color : Time <12  ? "yellow" : Time < 19 && Time > 12 ? "Orange" : Time >= 19 && Time <= 22 ? "#ffa9" :" grey " , fontSize:"20px" }}> {msg}</span></p>
         <form>
           <input
             className="form-control"
@@ -99,7 +117,7 @@ export default function Home() {
           </div>
         </div>
         <center>
-          <button
+          <button style={{ cursor: items.length < 1 ? "" : "pointer"}}
             disabled={items.length < 1}
             className="custom-btn"
             onClick={() => {

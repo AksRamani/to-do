@@ -1,11 +1,21 @@
 import React from "react";
 import { useState } from "react";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import SyncAltIcon from '@mui/icons-material/SyncAlt';
 
 export default function Home() {
+
   const [input, setInput] = useState("");
   const [items, setItems] = useState([]);
   const [isEditing, setIsEditing] = useState(true);
   let [eid, setEid] = useState(null);
+  const [time  , setTime] = useState(new Date().toLocaleTimeString())
+
+  setInterval(() => {
+    setTime(new Date().toLocaleTimeString())
+  }, 1000);
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -51,9 +61,10 @@ export default function Home() {
   const handleClearAll = () => {
     setItems([]);
   };
-  // let Time = new Date().getHours();
-  let Time = 21
+  let Time = new Date().getHours();
+  // let Time = 21
   let msg = (Time <12 ? "Good Morning" : Time < 19 && Time > 12 ? "Good Afternoon" : Time > 19 && Time < 22 ? "Good Evening" :"Good Night" )
+  console.log(msg)
 
 //   if(Time < 12)
 // {
@@ -72,7 +83,7 @@ export default function Home() {
   return (
     <>
       <div className="container my-5">
-       <p style={{color : "white" , fontSize:"20px"}}> Hello , <span style={{color : Time <12  ? "yellow" : Time < 19 && Time > 12 ? "Orange" : Time >= 19 && Time <= 22 ? "#ffa9" :" grey " , fontSize:"20px" }}> {msg}</span></p>
+       <p style={{color : "white" , fontSize:"20px"}}> Hello , <span style={{color : Time <12  ? "yellow" : Time < 19 && Time > 12 ? "Orange" : Time >= 19 && Time <= 22 ? "#ffa9" :" grey " , fontSize:"20px" }}> {msg} {time}</span></p>
         <form>
           <input
             className="form-control"
@@ -81,11 +92,13 @@ export default function Home() {
             placeholder="Enter your Todo list"
           />
           <br></br>
+          
           <button className="bn31" onClick={handleClick}>
             <span className="bn31span">
-              {isEditing === true ? "Add" : "Update"}
+              {isEditing === true ? <SaveAltIcon /> : <SyncAltIcon />}
             </span>
           </button>
+
         </form>
 
         <div className="row">
@@ -103,13 +116,13 @@ export default function Home() {
                         handleEdit(item.id);
                       }}
                     >
-                      <span className="bn31span">Edit</span>
+                      <span className="bn31span"><EditIcon /></span>
                     </button>
                     <button
                       className="bn31 mx-2"
                       onClick={() => hadleDelet(item.id)}
                     >
-                      <span className="bn31span">Delete</span>
+                      <span className="bn31span"><DeleteIcon /></span>
                     </button>
                   </li>
                 ))}

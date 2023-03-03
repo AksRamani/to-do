@@ -64,7 +64,7 @@ export default function Home() {
   let Time = new Date().getHours();
   // let Time = 21
   let msg = (Time <12 ? "Good Morning" : Time < 19 && Time > 12 ? "Good Afternoon" : Time > 19 && Time < 22 ? "Good Evening" :"Good Night" )
-  console.log(msg)
+  // console.log(msg)
 
 //   if(Time < 12)
 // {
